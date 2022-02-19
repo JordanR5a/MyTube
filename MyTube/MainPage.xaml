@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="MyTube.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyTube"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mediacore="using:Windows.Media.Core"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock Height="0" Width="0"/>
+        <StackPanel x:Name="MainPageLoading" Visibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <TextBlock FontSize="100" Opacity=".7" HorizontalAlignment="Center" Text="Loading Gallery"></TextBlock>
+            <ProgressBar x:Name="MainPageProgressBar" IsIndeterminate="True" Margin="0, 100, 0, 100" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="100"/>
+        </StackPanel>
+
+        <Grid Visibility="Collapsed" x:Name="RootGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="12*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="12*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center">
+                <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="100" Text="Videos"></TextBlock>
+                <Button x:Name="MainPageKnownVideos" Click="MainPageKnownVideos_Click" HorizontalAlignment="Stretch" FontSize="75" Margin="100, 150, 100, 75" Content="The Known"></Button>
+                <Button x:Name="MainPageMyTube" Click="MainPageUnknownVideos_Click" HorizontalAlignment="Stretch" FontSize="75" Margin="100, 75, 100, 75" Content="The Unknown"></Button>
+            </StackPanel>
+            <Button x:Name="MainPageImport" Click="MainPageImport_Click" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" VerticalContentAlignment="Top" FontSize="40" Margin="50, 0, 50, 0" Content="Import"></Button>
+            <Button x:Name="MainPageLoadBackup" Click="MainPageLoadBackup_Click" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Content="Load Backup"></Button>
+            <Button x:Name="MainPageDatabase" Click="MainPageDatabase_Click" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0" Content="View Data"></Button>
+        </Grid>
+    </Grid>
+</Page>
