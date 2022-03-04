@@ -79,6 +79,11 @@ namespace MyTube.VideoLibrary
                 video.Thumbnails = new List<Task<WriteableBitmap>>() { video.Thumbnails.FirstOrDefault() });
         }
 
+        public List<AttachedVideo> GetAllKnownVideos()
+        {
+            return GetAllKnownVideos(new List<AttachedVideo>());
+        }
+
         public List<AttachedVideo> GetAllKnownVideos(List<AttachedVideo> exceptions)
         {
             return Videos.Except(exceptions, new VideoComparer()).ToList();

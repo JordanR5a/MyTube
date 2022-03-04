@@ -8,7 +8,126 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Page.Resources>
+        <Style TargetType="Button" x:Key="MenuButton">
+            <Setter Property="Background" Value="#48484848" />
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="50" />
+            <Setter Property="Width" Value="270"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="RootGrid" Background="{TemplateBinding Background}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="RootGrid">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="RootGrid">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerDownThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="RootGrid">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
 
+    <Grid>
+        <MediaPlayerElement x:Name="mediaPlayerElement" AreTransportControlsEnabled="False" AutoPlay="False" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Collapsed">
+            <MediaPlayerElement.TransportControls>
+                <MediaTransportControls
+                    ShowAndHideAutomatically="False"
+                    IsFullWindowButtonVisible="False"
+                    IsNextTrackButtonVisible="False"
+                    IsPreviousTrackButtonVisible="False"
+                    IsVolumeButtonVisible="False"
+                    IsZoomButtonVisible="False"
+                    IsFastForwardButtonVisible="False"
+                    IsFastRewindButtonVisible="False"
+                    IsPlaybackRateButtonVisible="False"
+                    IsRepeatButtonVisible="False"
+                    IsSkipBackwardButtonVisible="False"
+                    IsSkipForwardButtonVisible="False"
+                    IsCompactOverlayButtonVisible="False"
+                    IsSeekBarVisible="True"
+                    IsCompact="True"
+                    IsSeekEnabled="True"
+                    IsStopButtonVisible="False"
+                    />
+            </MediaPlayerElement.TransportControls>
+        </MediaPlayerElement>
+        <Grid x:Name="VideoViewEventViewer" Height="50" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+        <StackPanel Orientation="Vertical" Margin="0">
+            <Button x:Name="VideoViewBackBtn" Click="VideoViewBackBtn_Click" HorizontalContentAlignment="Left" Style="{StaticResource MenuButton}">Back</Button>
+            <Button x:Name="VideoViewRandomizeBtn" Click="VideoViewRandomizeBtn_Click" HorizontalContentAlignment="Left" Style="{StaticResource MenuButton}">Randomize</Button>
+            <Button x:Name="VideoViewSaveBtn" Click="VideoViewSaveVideo_Click" HorizontalContentAlignment="Left" Style="{StaticResource MenuButton}">Save</Button>
+            <Button x:Name="VideoViewTrimBtn" Click="VideoViewTrimBtn_Click" HorizontalContentAlignment="Left" Style="{StaticResource MenuButton}">Trim</Button>
+            <Button x:Name="VideoViewPartitionBtn" Click="VideoViewPartitionBtn_Click" HorizontalContentAlignment="Left" Style="{StaticResource MenuButton}">Partition</Button>
+            <Button x:Name="VideoViewResetPartitionBtn" Click="VideoViewResetPartitionBtn_Click" HorizontalContentAlignment="Left" Style="{StaticResource MenuButton}">Reset</Button>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button x:Name="VideoViewLoopAutoToggleBtn" Click="VideoViewLoopAutoToggleBtn_Click" HorizontalContentAlignment="Right" Style="{StaticResource MenuButton}"></Button>
+        </StackPanel>
+        <Button x:Name="VideoViewDeleteBtn" Click="VideoViewDeleteBtn_Click" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource MenuButton}">Delete</Button>
+        <Button x:Name="VideoViewClearStartBtn" Click="VideoViewClearStartBtn_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="15" Width="270" Background="DarkRed" Margin="0, 0, 0, 130" Visibility="Collapsed">Clear Start</Button>
+        <Button x:Name="VideoViewSetStartBtn" Click="VideoViewSetStartBtn_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource MenuButton}" Margin="0, 0, 0, 50">Mark Start</Button>
+        <Button x:Name="VideoViewClearEndBtn" Click="VideoViewClearEndBtn_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Width="270" Background="DarkRed" Margin="0, 0, 0, 130" Visibility="Collapsed">Clear End</Button>
+        <Button x:Name="VideoViewSetEndBtn" Click="VideoViewSetEndBtn_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{StaticResource MenuButton}" Margin="0, 0, 0, 50">Mark End</Button>
+        <Border x:Name="VideoViewAnnouncementBorder" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Gray" BorderBrush="DarkGray" BorderThickness="5" Visibility="Collapsed">
+            <TextBlock x:Name="VideoViewAnnouncementText" FontSize="30" Foreground="LightGray" Text="Mark Successful" Padding="40, 20, 40, 20"/>
+        </Border>
     </Grid>
 </Page>

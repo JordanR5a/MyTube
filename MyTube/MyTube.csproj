@@ -119,6 +119,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GalleryViewPage.xaml.cs">
+      <DependentUpon>GalleryViewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -126,6 +129,7 @@
     <Compile Include="Model\AttachedVideo.cs" />
     <Compile Include="Model\DatabaseCore.cs" />
     <Compile Include="Model\Thumbnail.cs" />
+    <Compile Include="VideoLibrary\ApiManager.cs" />
     <Compile Include="VideoLibrary\DataManager.cs" />
     <Compile Include="Model\DetachedTag.cs" />
     <Compile Include="Model\DetachedUnknown.cs" />
@@ -142,6 +146,12 @@
     <Compile Include="VideoLibrary\TagManager.cs" />
     <Compile Include="VideoLibrary\VideoView.cs" />
     <Compile Include="VideoLibrary\WindowTransferPackage.cs" />
+    <Compile Include="VideoSavePage.xaml.cs">
+      <DependentUpon>VideoSavePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VideoViewPage.xaml.cs">
+      <DependentUpon>VideoViewPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -157,77 +167,6 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %282%29 - Copy %282%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %282%29 - Copy - Copy.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %282%29 - Copy.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %282%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy %282%29 - Copy %282%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy %282%29 - Copy %283%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy %282%29 - Copy - Copy %282%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy %282%29 - Copy - Copy.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy %282%29 - Copy.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy %282%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy %283%29 - Copy %282%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy %283%29 - Copy.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy %283%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy %284%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy %285%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy - Copy %282%29 - Copy %282%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy - Copy %282%29 - Copy.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy - Copy %282%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy - Copy %283%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy - Copy %284%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy - Copy - Copy %282%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy - Copy - Copy.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy - Copy.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29 - Copy.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %283%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %284%29 - Copy %282%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %284%29 - Copy - Copy - Copy %282%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %284%29 - Copy - Copy - Copy.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %284%29 - Copy - Copy.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %284%29 - Copy.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %284%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %285%29 - Copy.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %285%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy %286%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy - Copy %282%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy - Copy %283%29.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy - Copy - Copy.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy - Copy.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29 - Copy.mp4" />
-    <Content Include="Resources\Assignments_ Character Design - Section B2 - Google Chrome 2021-12-11 10-31-46 - Copy - Copy %282%29.mp4" />
-    <Content Include="Resources\Mail - Reece Zarkowski - Outlook - Google Chrome 2021-12-15 08-56-05.mp4" />
-    <Content Include="Resources\test - Copy %282%29 - Copy.mp4" />
-    <Content Include="Resources\test - Copy %282%29.mp4" />
-    <Content Include="Resources\test - Copy %283%29 - Copy.mp4" />
-    <Content Include="Resources\test - Copy %283%29.mp4" />
-    <Content Include="Resources\test - Copy %284%29.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29 - Copy %284%29 - Copy %282%29 - Copy.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29 - Copy %284%29 - Copy %282%29.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29 - Copy %284%29 - Copy %283%29 - Copy.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29 - Copy %284%29 - Copy %283%29.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29 - Copy %284%29 - Copy %284%29.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29 - Copy %284%29 - Copy - Copy %282%29 - Copy %282%29.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29 - Copy %284%29 - Copy - Copy %282%29 - Copy - Copy.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29 - Copy %284%29 - Copy - Copy %282%29 - Copy.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29 - Copy %284%29 - Copy - Copy %282%29.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29 - Copy %284%29 - Copy - Copy %283%29 - Copy.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29 - Copy %284%29 - Copy - Copy %283%29.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29 - Copy %284%29 - Copy - Copy - Copy %282%29.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29 - Copy %284%29 - Copy - Copy - Copy - Copy.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29 - Copy %284%29 - Copy - Copy - Copy.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29 - Copy %284%29 - Copy - Copy.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29 - Copy %284%29 - Copy.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29 - Copy %284%29.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29 - Copy.mp4" />
-    <Content Include="Resources\test - Copy - Copy %282%29.mp4" />
-    <Content Include="Resources\test - Copy - Copy %283%29.mp4" />
-    <Content Include="Resources\test - Copy - Copy - Copy - Copy.mp4" />
-    <Content Include="Resources\test - Copy - Copy - Copy.mp4" />
-    <Content Include="Resources\test - Copy - Copy.mp4" />
-    <Content Include="Resources\test - Copy.mp4" />
-    <Content Include="Resources\test.mp4" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

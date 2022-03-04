@@ -4,11 +4,56 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MyTube"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <TextBlock Height="0" Width="0"/>
+        <StackPanel x:Name="VideoSavePageLoading" Visibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <TextBlock FontSize="100" Opacity=".7" HorizontalAlignment="Center">Loading...</TextBlock>
+            <ProgressBar IsIndeterminate="True" Margin="0, 100, 0, 100" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="100"/>
+        </StackPanel>
 
+        <Grid x:Name="VideoSavePageCore" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="VideoSaveTagsSearch" TextChanged="VideoSaveTagsSearch_TextChanged" HorizontalAlignment="Center" VerticalAlignment="Top" MinWidth="500" MaxWidth="500" PlaceholderText="Search Tags" TextAlignment="Center" FontSize="35" Margin="15"/>
+            <Button x:Name="VideoSavePagePeekBtn" Click="VideoSavePagePeekBtn_Click" Grid.Row="1" Margin="150, 0, 150, 0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="40"/>
+            <Button x:Name="VideoSavePageBackBtn" Click="VideoSavePageBackBtn_Click" Grid.Row="1" Margin="0, 150, 0, 150" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="40"/>
+            <ScrollViewer x:Name="TagView" Grid.Column="0" VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto" Margin="100" Height="800">
+                <controls:WrapPanel x:Name="VideoSaveTagsDisplay" VerticalAlignment="Top"/>
+            </ScrollViewer>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height=".75*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="480"/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                <StackPanel>
+                    <TextBox x:Name="VideoSaveNewTagName" Visibility="Visible" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="30" FontSize="25" PlaceholderText="Tag Name"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button x:Name="VideoSaveNewTag" Visibility="Visible" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10" FontSize="25" Click="VideoSaveNewTag_Click">New Tag</Button>
+                        <Button x:Name="VideoSaveAdoptBtn" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" FontSize="25" Click="VideoSaveAdoptBtn_Click">Tag Adoption</Button>
+                    </StackPanel>
+                </StackPanel>
+                <ToggleSwitch Grid.Row="1" OffContent="Inclusive" OnContent="Exclusive" Visibility="Collapsed" x:Name="VideoSaveToggleTagInclusive" Toggled="VideoSaveToggleTagInclusive_Toggled" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="40"/>
+                <Viewbox x:Name="VideoSaveUnknownVideoInfo" Grid.Row="1" Margin="20" VerticalAlignment="Top" HorizontalAlignment="Stretch" Visibility="Collapsed">
+                    <TextBox x:Name="VideoSaveUnknownVideoInfoText" Background="Transparent" BorderThickness="0" Text="{Binding Text, Mode=OneWay}" IsReadOnly="True" Grid.Row="1"/>
+                </Viewbox>
+                <Button x:Name="VideoSaveSubmitBtn" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="50" FontSize="75" Click="VideoSaveSubmitBtn_Click">Submit</Button>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

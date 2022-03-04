@@ -7,7 +7,6 @@
         KNOWN,
         SEARCH,
         DEFAULT,
-        CHARACTER,
         PARTITION,
         PLAYLIST,
         ADOPTION,

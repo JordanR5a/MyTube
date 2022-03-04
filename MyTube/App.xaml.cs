@@ -9,9 +9,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace MyTube
 {
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
+
     sealed partial class App : Application
     {
         public static DataManager BackupDataManager;
