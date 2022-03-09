@@ -22,6 +22,7 @@
                 <ColumnDefinition Width="4*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="GalleryViewPageBackBtn" Click="GalleryViewPageBackBtn_Click" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="40"/>
+            <Button x:Name="GalleryViewPageUpdateGlobalDatabase" Click="GalleryViewPageUpdateGlobalDatabase_Click" Grid.Column="1" Content="Update Database" FontSize="30" HorizontalAlignment="Center" Visibility="Collapsed"/>
             <TextBlock x:Name="GalleryViewAnnouncement" Grid.Row="2" Grid.Column="1" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Button Grid.Column="1" x:Name="GalleryViewPageChangeTags" Click="GalleryViewPageChangeTags_Click" HorizontalAlignment="Left" VerticalAlignment="Stretch" FontSize="30" Padding="20, 0, 20, 0" Margin="5" Visibility="Collapsed">Pick Tags</Button>
             <ScrollViewer x:Name="scrollView" Grid.Row="1" Grid.Column="1" VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto">

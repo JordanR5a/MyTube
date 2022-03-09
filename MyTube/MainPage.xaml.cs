@@ -67,6 +67,31 @@ namespace MyTube
             });
         }
 
+        private async void PopulateVideoGallery(string instanceCode, string password)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                try
+                {
+                    var newData = new DataManager(instanceCode, password);
+                    if (newData.IsEmpty()) return;
+                    dataManager = new DataManager(instanceCode, password);
+                    videoGallery = dataManager.CreateVideoGallery(FileStorage.GetAllVideos());
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                    DisplayDatabaseCurruptionDialog();
+                    return;
+                }
+
+
+                App.MainDataManager = dataManager;
+                App.MainVideoGallery = videoGallery;
+                MainMenuMode();
+            });
+        }
+
         private async void PopulateVideoGallery()
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
@@ -233,6 +258,63 @@ namespace MyTube
         private void MainPageDatabase_Click(object sender, RoutedEventArgs e)
         {
             DataManager.ViewDatabase();
+        }
+
+        private async void DisplayLoginDialog()
+        {
+            TextBox inputTextBox = new TextBox();
+            inputTextBox.AcceptsReturn = false;
+            inputTextBox.Height = 32;
+            inputTextBox.Focus(FocusState.Programmatic);
+
+            ContentDialog loginDialog = new ContentDialog
+            {
+                Title = "Login",
+                Content = inputTextBox,
+                PrimaryButtonText = "Submit",
+                CloseButtonText = "Close",
+                DefaultButton = ContentDialogButton.Primary
+            };
+
+            ContentDialogResult result = await loginDialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                App.password = inputTextBox.Text.Trim();
+                if (App.instanceCode == null) DisplayinstanceCodeDialog();
+                else PopulateVideoGallery(App.instanceCode, App.password);
+            }
+        }
+
+        private async void DisplayinstanceCodeDialog()
+        {
+            TextBox inputTextBox = new TextBox();
+            inputTextBox.AcceptsReturn = false;
+            inputTextBox.Height = 32;
+            inputTextBox.Focus(FocusState.Programmatic);
+
+            ContentDialog instanceCodeDialog = new ContentDialog
+            {
+                Title = "Instance Code",
+                Content = inputTextBox,
+                PrimaryButtonText = "Submit",
+                CloseButtonText = "Close",
+                DefaultButton = ContentDialogButton.Primary
+            };
+
+            ContentDialogResult result = await instanceCodeDialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                App.instanceCode = inputTextBox.Text.Trim();
+                PopulateVideoGallery(App.instanceCode, App.password);
+            }
+        }
+
+        private void MainPageLoadGlobalDatabase_Click(object sender, RoutedEventArgs e)
+        {
+            if (App.password == null) DisplayLoginDialog();
+            else DisplayinstanceCodeDialog();
         }
     }
 }

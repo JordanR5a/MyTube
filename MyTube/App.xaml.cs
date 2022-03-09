@@ -17,6 +17,8 @@ namespace MyTube
         public static VideoGallery MainVideoGallery;
         public static PageNavigation PageNavigation;
         public static List<string> SelectedTags;
+        public static string password;
+        public static string instanceCode;
 
         public App()
         {

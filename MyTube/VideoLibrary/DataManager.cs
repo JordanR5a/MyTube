@@ -26,11 +26,22 @@ namespace MyTube.VideoLibrary
         private List<StorageFile> usedFiles;
         private TagManager tagManager;
 
+        public bool IsEmpty()
+        {
+            return coreData == null;
+        }
+
         public DataManager(string database, bool forceReset)
         {
             coreData = new DatabaseCore();
             usedFiles = new List<StorageFile>();
             ParseData(database, forceReset);
+        }
+
+        public DataManager(string instanceCode, string password)
+        {
+            coreData = ApiManager.GetGloabalDatabase(password, instanceCode);
+            usedFiles = new List<StorageFile>();
         }
 
         public static void ViewDatabaseFolder()
@@ -312,6 +323,18 @@ namespace MyTube.VideoLibrary
 
             SaveData(databaseName);
             coreData = null;
+        }
+
+        public string UpdateGlobalData(VideoGallery videoGallery, string instanceCode, string password)
+        {
+            DatabaseCore database = new DatabaseCore();
+            foreach (AttachedVideo aVideo in videoGallery.Videos) database.Videos.Add(StripVideo(aVideo));
+            database.Videos = database.Videos.OrderBy(x => x.DocumentedDate).ToList();
+            foreach (AttachedVideo aVideo in videoGallery.UnknownVideos) database.Unknowns.Add(StripUnknown(aVideo));
+            database.Unknowns = database.Unknowns.OrderByDescending(x => x.Name).ToList();
+            database.TagOrigin = StripTag(videoGallery.TagManager.TagCore);
+
+            return ApiManager.UpdateDatabase(password, instanceCode, database);
         }
 
     }

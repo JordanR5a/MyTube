@@ -31,6 +31,7 @@
                 <Button x:Name="MainPageKnownVideos" Click="MainPageKnownVideos_Click" HorizontalAlignment="Stretch" FontSize="75" Margin="100, 150, 100, 75" Content="The Known"></Button>
                 <Button x:Name="MainPageMyTube" Click="MainPageUnknownVideos_Click" HorizontalAlignment="Stretch" FontSize="75" Margin="100, 75, 100, 75" Content="The Unknown"></Button>
             </StackPanel>
+            <Button x:Name="MainPageLoadGlobalDatabase" Click="MainPageLoadGlobalDatabase_Click" Grid.Column="2" Content="Load Global" FontSize="15" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
             <Button x:Name="MainPageImport" Click="MainPageImport_Click" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" VerticalContentAlignment="Top" FontSize="40" Margin="50, 0, 50, 0" Content="Import"></Button>
             <Button x:Name="MainPageLoadBackup" Click="MainPageLoadBackup_Click" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Content="Load Backup"></Button>
             <Button x:Name="MainPageDatabase" Click="MainPageDatabase_Click" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0" Content="View Data"></Button>

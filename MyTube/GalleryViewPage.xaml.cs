@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using MyTube.Model;
 using MyTube.VideoLibrary;
 using Windows.UI.Xaml;
@@ -55,6 +56,7 @@ namespace MyTube
             {
                 gallery = package.Parameters["videoGallery"] as VideoGallery;
                 GalleryViewPageChangeTags.Visibility = Visibility.Visible;
+                if (App.instanceCode != null) GalleryViewPageUpdateGlobalDatabase.Visibility = Visibility.Visible;
             }
             else if (state == State.SEARCH)
             {
@@ -199,6 +201,73 @@ namespace MyTube
                     { "videoGallery", galleryView.VideoGallery },
                     { "tagCore", App.MainVideoGallery.TagManager.TagCore }
                 }));
+        }
+
+        private async void DisplayInstanceDialog()
+        {
+
+            ContentDialog instanceDialog = new ContentDialog
+            {
+                Title = "Instance Code",
+                Content = "You instance code is: " + App.instanceCode,
+                CloseButtonText = "Close",
+                DefaultButton = ContentDialogButton.Close
+            };
+
+            ContentDialogResult result = await instanceDialog.ShowAsync();
+        }
+
+        private async void DisplayLoginDialog()
+        {
+            TextBox inputTextBox = new TextBox();
+            inputTextBox.AcceptsReturn = false;
+            inputTextBox.Height = 32;
+            inputTextBox.Focus(FocusState.Programmatic);
+
+            ContentDialog loginDialog = new ContentDialog
+            {
+                Title = "Login",
+                Content = inputTextBox,
+                PrimaryButtonText = "Submit",
+                CloseButtonText = "Close",
+                DefaultButton = ContentDialogButton.Primary
+            };
+
+            ContentDialogResult result = await loginDialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                App.password = inputTextBox.Text.Trim();
+                try
+                {
+                    App.instanceCode = App.MainDataManager.UpdateGlobalData(App.MainVideoGallery, App.instanceCode, App.password);
+                    DisplayInstanceDialog();
+                }
+                catch (AccessViolationException) 
+                {
+                    App.password = null;
+                    GalleryViewPageUpdateGlobalDatabase_Click(null, null);
+                }
+            }
+        }
+
+        private void GalleryViewPageUpdateGlobalDatabase_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (App.password == null) DisplayLoginDialog();
+                else
+                {
+                    App.instanceCode = App.MainDataManager.UpdateGlobalData(App.MainVideoGallery, App.instanceCode, App.password);
+                    DisplayInstanceDialog();
+                }
+            }
+            catch (AccessViolationException)
+            {
+                App.password = null;
+                GalleryViewPageUpdateGlobalDatabase_Click(null, null);
+            }
+
         }
     }
 }
